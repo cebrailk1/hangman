@@ -1,0 +1,30 @@
+
+body {
+    text-align: center;
+    background-size: 55500%;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h1 {
+    text-align: center  
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #white;
+    overflow: hidden;
+    max-width: 700px;
+    width: 95%;
+    border-radius: 25px;
+    box-shadow: 1px 1px 8px #424242;
+    margin: auto;
+    color: black
+    font-weight: 900
+       
+}
+
