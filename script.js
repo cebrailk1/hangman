@@ -2,7 +2,7 @@
 
 function hangoman() {}
 // let randomWords = (generate())
-let winner = "KANTINENESSEN";
+let winner = "telekommunikationsüberwachungsverordnung";
 let winnerChars = winner.split("");
 let array = [];
 for (let i = 0; i < winnerChars.length; i++) {
