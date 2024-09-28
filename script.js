@@ -47,25 +47,3 @@ function logKey(event) {
 if (array.join("") == winnerChars.join("")) {
   win.textContent = "Gewonnen!";
 }
-
-
-
-// leben + falsch eingetippt buchstaben anzeigen auf seite
-
-/* 
-if (keyPress == newArr[i]) {
-      console.log ("0 health damage")
-      return "0 health damage"
-   }
-   else
-   console.log ("-1 health")
-   return newArr[i]
-   */
-
-/*
-     halloScript = document.getElementById("halloScript");
-   halloScript.onclick = function () {
-      console.log ("Hallo Script")
-   }
-
-   */

@@ -1,7 +1,6 @@
 body {
   text-align: center;
-  /*! background-size: 55500%; */
-  font-family: "Poppins", sans-serif;
+  font-family: "Archivo Black", sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   color: linear-gradient(
@@ -10,7 +9,6 @@ body {
     rgba(44, 10, 65, 0.6888888888888889) 53%,
     rgb(32, 32, 32) 100%
   );
-  /*! background: ; */
   background: rgb(23, 23, 23);
   background: linear-gradient(
     180deg,
