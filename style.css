@@ -1,14 +1,9 @@
+
 body {
   text-align: center;
-  font-family: "Archivo Black", sans-serif;
+  font-family:"Press Start 2P", system-ui;
   text-transform: uppercase;
   font-weight: 700;
-  color: linear-gradient(
-    180deg,
-    rgb(23, 23, 23) 0%,
-    rgba(44, 10, 65, 0.6888888888888889) 53%,
-    rgb(32, 32, 32) 100%
-  );
   background: rgb(23, 23, 23);
   background: linear-gradient(
     180deg,
@@ -21,6 +16,7 @@ body {
   background: rgb(23, 23, 23);
   width: 655px;
   margin: auto;
+  text-shadow: 1px 1px 8px #f3ec784d;
 }
 
 .gradient-text {
@@ -45,12 +41,13 @@ header {
 }
 
 h1 {
-  font-family: "Archivo Black", sans-serif;
+  font-family: "Press Start 2P", system-ui;
   font-weight: normal;
   font-size: 6em;
   text-align: center;
-  margin-bottom: 0;
   margin-bottom: -0.1em;
+  text-shadow: 1px 1px 8px #f3ec784d;
+
 }
 
 ul {
@@ -60,3 +57,5 @@ ul {
   margin: auto;
   height: 555px;
 }
+
+

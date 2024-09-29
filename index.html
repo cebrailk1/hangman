@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HANGMAN</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 
 </head>
@@ -15,21 +18,36 @@
     <div></div>
     <div>
         <ul>
+            <div>
+                <div class="gradient-text">
+                    <span id="gameWord">start by pressing a keyboard button</span>
+                    <p id="win">You will lose!</p>
+                    <p id="health">&hearts;&hearts;&hearts;&hearts;&hearts;&hearts;&hearts;&hearts;</p>
+                    <p id="health2">&hearts;</p>
 
-            <div class="gradient-text">
-                <span id="gameWord">hardest HANGMAN</span>
-                <p id="win">You will lose!</p>
-
-
+                </div>
+                
+                
+                
             </div>
-
+            
         </ul>
-    </div>
-
-    <script src="script.js">
-
-
-    </script>
+         <!-- <button id="restartButton">Restart</button>  -->
+        </div>
+        
+        <script src="script.js">
+            
+            
+        </script>
 </body>
+<footer>
+<a class="button" href="#" style="--color:#1e9bff;">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Restart
+  </a>
+</footer>
 
 </html>
