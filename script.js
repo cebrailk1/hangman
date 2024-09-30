@@ -1,10 +1,13 @@
 let button = document.querySelector(".startButton");
 
 button.addEventListener("click", function () {
+  let restartButton = document.querySelector(".startButton");
+  restartButton.textContent = "Restart";
   let healthSymbol = document.querySelector("#health");
   let winner = "zauberstab";
   let winnerChars = winner.split("");
   let array = [];
+  let keyboardArray = [];
   for (let i = 0; i < winnerChars.length; i++) {
     array.push("_");
   }
@@ -42,8 +45,17 @@ button.addEventListener("click", function () {
       }
     }
 
-    keyboard.textContent = event.key;
+    if (!event.key.match(/^[a-z]$/i)) {
+      keyboardArray.push(event.key);
+      keyboard.textContent = 
+      "falsche: [ " +
+      keyboardArray
+        .sort()
+        .join(" ") +
+      " ]";
+    }
 
+  
 
     if (health == 0) {
       return "GAMEOVER";
@@ -79,14 +91,14 @@ button.addEventListener("click", function () {
       healthSymbol.style.marginTop = "65px";
     }
 
+    if (array.join("") == winnerChars.join("")) {
+      healthSymbol.textContent = "Gewonnen!";
+    }
     if (health >= 1) {
       win.textContent = "noch " + health + " Leben";
     }
     if (health < 1) {
       win.textContent = "verloren!";
     }
-  }
-  if (array.join("") == winnerChars.join("")) {
-    win.textContent = "Gewonnen!";
   }
 });
