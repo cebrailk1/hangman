@@ -1,18 +1,24 @@
 let button = document.querySelector(".startButton");
 
-button.addEventListener("click", function () {
+button.addEventListener("click", async function () {
+    let url = "https://random-word-api.herokuapp.com/word?lang=de";
+   let word = awaitfetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data[0];
+      });
+
   let restartButton = document.querySelector(".startButton");
   restartButton.textContent = "Restart";
   let healthSymbol = document.querySelector("#health");
-  let winner = "zauberstab";
-  let winnerChars = winner.split("");
+  let winnerChars = word.split("");
   let array = [];
   let keyboardArray = [];
   for (let i = 0; i < winnerChars.length; i++) {
     array.push("_");
   }
-  let health2 = document.querySelector("#health2");
-  let restartButton2 = document.querySelector("#restartButton");
+  PageTransitionEvent;
   let keyPress = "H";
   let result = winnerChars.filter((key) => key == keyPress);
   let gameWord = document.querySelector("#gameWord");
@@ -47,15 +53,9 @@ button.addEventListener("click", function () {
 
     if (!event.key.match(/^[a-z]$/i)) {
       keyboardArray.push(event.key);
-      keyboard.textContent = 
-      "falsche: [ " +
-      keyboardArray
-        .sort()
-        .join(" ") +
-      " ]";
+      keyboard.textContent =
+        "bereits geraten: [ " + keyboardArray.sort().join(" ") + " ]";
     }
-
-  
 
     if (health == 0) {
       return "GAMEOVER";
