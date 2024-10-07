@@ -1,28 +1,39 @@
 const body = document.querySelector("body");
-const button = document.querySelector(".startButton");
-let winnerChars = [];
-let underscoreArray = [];
-let result;
-let keyboardArray = [];
-let keyPress; //!!!!
-const gameWord = document.querySelector("#gameWord");
-const win = document.querySelector("#win");
-const keyboard = document.querySelector("#keyboard");
-const healthSymbol = document.querySelector("#health");
-const winLogged = document.querySelector("#winLogged");
-let underscoredArray = [];
+const startButton = document.querySelector(".start-button");
+const gameWordDiv = document.querySelector("#game-word");
+const winDiv = document.querySelector("#win");
+const wrongGuessesDiv = document.querySelector("#wrong-guesses");
+const healthSymbolDiv = document.querySelector("#health");
+const scoreDiv = document.querySelector("#score");
+let secretWord = [];
+let wrongGuesses;
+let gameWord;
 let health = 8;
-let healthCount = "&hearts;";
+let hearts = "&hearts;";
 let skull = "&#9760;";
-let totalWins = Number(loadTotalWins());
 let gameOver = false;
+let totalWins = Number(loadTotalWins());
+scoreDiv.textContent = "Your total wins: " + totalWins;
 
-if (saveWins !== 0) {
-  saveWins(totalWins);
-}
-
-button.addEventListener("click", async function () {
+startButton.addEventListener("click", async function resetRound() {
+  gameOver = false;
   health = 8;
+  secretWord = await fetchNewWord();
+  wrongGuesses = [];
+  gameWord = [];
+  for (let i = 0; i < secretWord.length; i++) {
+    gameWord.push("_");
+  }
+
+  startButton.textContent = "Restart";
+  gameWordDiv.textContent = gameWord.join(" ");
+  healthSymbolDiv.style.fontSize = "25px";
+  healthSymbolDiv.innerHTML = hearts.repeat(health);
+  winDiv.textContent = "noch 8 Leben";
+});
+
+async function fetchNewWord() {
+  return ["a", "b", "b", "a"];
   let url = "https://random-word-api.herokuapp.com/word?lang=de";
   let randomWord = await fetch(url)
     .then((response) => response.json())
@@ -30,76 +41,58 @@ button.addEventListener("click", async function () {
       console.log(data[0]);
       return data[0];
     });
-  keyboardArray = [];
-  button.textContent = "Restart";
-  winnerChars = randomWord.toLowerCase().split("");
-  underscoredArray = [];
-  for (let i = 0; i < winnerChars.length; i++) {
-    underscoredArray.push("_");
-  }
-  result = winnerChars.filter((key) => key == keyPress);
+  return randomWord.toLowerCase().split("");
+}
 
-  gameWord.textContent = underscoredArray.join(" ");
-});
+body.addEventListener("keypress", guessChar);
 
-body.addEventListener("keypress", logKey);
-
-function logKey(event) {
-  if (gameOver) {
+function guessChar(event) {
+  let key = event.key.toLowerCase();
+  if (gameOver || !key.match(/^[a-z]$/i)) {
     return;
   }
-  for (let i = 0; i < winnerChars.length; i++) {
-    if (event.key === winnerChars[i]) {
-      underscoredArray[i] = winnerChars[i];
-      gameWord.textContent = underscoredArray.join(" ");
+  for (let i = 0; i < secretWord.length; i++) {
+    if (key === secretWord[i]) {
+      gameWord[i] = secretWord[i];
     }
   }
-  if (event.key.match(/^[a-z]$/i)) {
-    if (!keyboardArray.includes(event.key)) {
-      keyboardArray.push(event.key);
-    }
+  gameWordDiv.textContent = gameWord.join(" ");
+  if (!secretWord.includes(key) && !wrongGuesses.includes(key)) {
+    wrongGuesses.push(key);
+    wrongGuessesDiv.textContent =
+      "bereits geraten: [ " + wrongGuesses.sort().join(" ") + " ]";
+  }
 
-    keyboard.textContent =
-      "bereits geraten: [ " + keyboardArray.sort().join(" ") + " ]";
-  }
   damage(event);
   checkWin(event);
 }
-button.addEventListener("click", function reset() {
-  health = 8;
-  gameOver = false;
-  healthSymbol.style.fontSize = "25px";
-  healthSymbol.innerHTML = healthCount.repeat(health);
-  win.textContent = "noch 8 Leben";
-});
 
 function checkWin(event) {
-  if (underscoredArray.join("") === winnerChars.join("")) {
-    win.textContent = "Gewonnen!";
+  if (gameWord.join("") === secretWord.join("")) {
+    winDiv.textContent = "Gewonnen!";
     totalWins += 1;
     gameOver = true;
     console.log(totalWins);
     saveWins(totalWins);
-    winLogged.textContent = "Your total wins: " + totalWins;
+    scoreDiv.textContent = "Your total wins: " + totalWins;
   }
-  event.preventDefault();
 }
 function damage(event) {
-  if (!winnerChars.includes(event.key)) {
-    console.log((health -= 1));
+  if (!secretWord.includes(event.key)) {
+    health -= 1;
   }
   if (health == 8) {
-    healthSymbol.style.fontSize = "25px";
-    healthSymbol.innerHTML = healthCount.repeat(health);
+    healthSymbolDiv.style.fontSize = "25px";
+    healthSymbolDiv.innerHTML = hearts.repeat(health);
   }
   if (health >= 1) {
-    healthSymbol.innerHTML = healthCount.repeat(health);
-    win.textContent = "noch " + health + " Leben";
+    healthSymbolDiv.innerHTML = hearts.repeat(health);
+    winDiv.textContent = "noch " + health + " Leben";
   } else {
-    healthSymbol.innerHTML = skull.repeat(1);
-    healthSymbol.style.fontSize = "100px";
-    healthSymbol.style.marginTop = "65px";
-    return (win.textContent = "verloren!");
+    healthSymbolDiv.innerHTML = skull.repeat(1);
+    healthSymbolDiv.style.fontSize = "100px";
+    healthSymbolDiv.style.marginTop = "65px";
+    return (winDiv.textContent = "verloren!");
   }
 }
 

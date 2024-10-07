@@ -1,7 +1,6 @@
-
 body {
   text-align: center;
-  font-family:"Press Start 2P", system-ui;
+  font-family: "Press Start 2P", system-ui;
   text-transform: uppercase;
   font-weight: 700;
   background: rgb(23, 23, 23);
@@ -47,7 +46,6 @@ h1 {
   text-align: center;
   margin-bottom: -0.1em;
   text-shadow: 1px 1px 8px #f3ec784d;
-
 }
 
 ul {
@@ -58,4 +56,50 @@ ul {
   height: 555px;
 }
 
+/*
+.startButton {
+  align-items: center;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
 
+.startButton:active,
+.startButton:hover {
+  outline: 0;
+}
+
+.startButton span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.startButton:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+*/
