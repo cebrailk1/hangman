@@ -32,7 +32,7 @@ button.addEventListener("click", async function () {
     });
   keyboardArray = [];
   button.textContent = "Restart";
-  winnerChars = randomWord.split("");
+  winnerChars = randomWord.toLowerCase().split("");
   underscoredArray = [];
   for (let i = 0; i < winnerChars.length; i++) {
     underscoredArray.push("_");
