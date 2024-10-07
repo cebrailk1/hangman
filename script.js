@@ -63,7 +63,7 @@ function guessChar(event) {
       "bereits geraten: [ " + wrongGuesses.sort().join(" ") + " ]";
   }
 
-  damage(event);
+  damage(key);
   checkWin(event);
 }
 
@@ -77,8 +77,8 @@ function checkWin(event) {
     scoreDiv.textContent = "Your total wins: " + totalWins;
   }
 }
-function damage(event) {
-  if (!secretWord.includes(event.key)) {
+function damage(key) {
+  if (!secretWord.includes(key)) {
     health -= 1;
   }
   if (health == 8) {
