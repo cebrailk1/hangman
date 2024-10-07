@@ -15,6 +15,7 @@ let health = 8;
 let healthCount = "&hearts;";
 let skull = "&#9760;";
 let totalWins = Number(loadTotalWins());
+let gameOver = false;
 
 if (saveWins !== 0) {
   saveWins(totalWins);
@@ -44,6 +45,9 @@ button.addEventListener("click", async function () {
 body.addEventListener("keypress", logKey);
 
 function logKey(event) {
+  if (gameOver) {
+    return;
+  }
   for (let i = 0; i < winnerChars.length; i++) {
     if (event.key === winnerChars[i]) {
       underscoredArray[i] = winnerChars[i];
@@ -59,23 +63,26 @@ function logKey(event) {
       "bereits geraten: [ " + keyboardArray.sort().join(" ") + " ]";
   }
   damage(event);
-  checkWin();
+  checkWin(event);
 }
 button.addEventListener("click", function reset() {
   health = 8;
+  gameOver = false;
   healthSymbol.style.fontSize = "25px";
   healthSymbol.innerHTML = healthCount.repeat(health);
   win.textContent = "noch 8 Leben";
 });
 
-function checkWin() {
-  if (underscoredArray.join("") == winnerChars.join("")) {
+function checkWin(event) {
+  if (underscoredArray.join("") === winnerChars.join("")) {
     win.textContent = "Gewonnen!";
     totalWins += 1;
-    console.log(typeof totalWins);
+    gameOver = true;
+    console.log(totalWins);
     saveWins(totalWins);
     winLogged.textContent = "Your total wins: " + totalWins;
   }
+  event.preventDefault();
 }
 function damage(event) {
   if (!winnerChars.includes(event.key)) {
