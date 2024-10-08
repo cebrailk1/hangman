@@ -14,7 +14,6 @@ let skull = "&#9760;";
 let gameOver = false;
 let totalWins = Number(loadTotalWins());
 scoreDiv.textContent = "Your total wins: " + totalWins;
-
 startButton.addEventListener("click", async function resetRound() {
   gameOver = false;
   health = 8;
@@ -24,16 +23,14 @@ startButton.addEventListener("click", async function resetRound() {
   for (let i = 0; i < secretWord.length; i++) {
     gameWord.push("_");
   }
-
   startButton.textContent = "Restart";
   gameWordDiv.textContent = gameWord.join(" ");
   healthSymbolDiv.style.fontSize = "25px";
   healthSymbolDiv.innerHTML = hearts.repeat(health);
   winDiv.textContent = "noch 8 Leben";
 });
-
 async function fetchNewWord() {
-  return ["a", "b", "b", "a"];
+  // return ["a", "b", "b", "a"];
   let url = "https://random-word-api.herokuapp.com/word?lang=de";
   let randomWord = await fetch(url)
     .then((response) => response.json())
@@ -43,9 +40,7 @@ async function fetchNewWord() {
     });
   return randomWord.toLowerCase().split("");
 }
-
 body.addEventListener("keypress", guessChar);
-
 function guessChar(event) {
   let key = event.key.toLowerCase();
   if (gameOver || !key.match(/^[a-z]$/i)) {
@@ -62,11 +57,9 @@ function guessChar(event) {
     wrongGuessesDiv.textContent =
       "bereits geraten: [ " + wrongGuesses.sort().join(" ") + " ]";
   }
-
   damage(key);
   checkWin(event);
 }
-
 function checkWin(event) {
   if (gameWord.join("") === secretWord.join("")) {
     winDiv.textContent = "Gewonnen!";
@@ -81,11 +74,8 @@ function damage(key) {
   if (!secretWord.includes(key)) {
     health -= 1;
   }
-  if (health == 8) {
+  if (health == 8 || health >= 1) {
     healthSymbolDiv.style.fontSize = "25px";
-    healthSymbolDiv.innerHTML = hearts.repeat(health);
-  }
-  if (health >= 1) {
     healthSymbolDiv.innerHTML = hearts.repeat(health);
     winDiv.textContent = "noch " + health + " Leben";
   } else {
@@ -95,7 +85,6 @@ function damage(key) {
     return (winDiv.textContent = "verloren!");
   }
 }
-
 function saveWins() {
   localStorage.setItem("storagewin", totalWins);
 }
