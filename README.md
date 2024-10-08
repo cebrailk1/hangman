@@ -13,7 +13,7 @@
 
 <h2 align="center"> How to run </h2>
  
-<p align="center"> - Clone the repository in your local files with <code>git clone git@github.com:cebrailk1/hangman.git</code> </p>
+<p align="center"> - Clone the repository in your local files with <code>git clone https://github.com/cebrailk1/hangman.git</code> </p>
 <p align="center"> - Open die index.html file in your browser. </p>
 <p align="center"> -Start the game by pressing on the "Start" button. </p>
 <p align="center"> - After that the game begins and you can start guessing by pressing chars on your keyboard.</p>
