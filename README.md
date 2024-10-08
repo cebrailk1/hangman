@@ -9,4 +9,4 @@ Open die index.html file in your browser. Start the game by pressing on the "Sta
 You can restart a round by pressing on the "Restart" button.
 
 ## How to change
-Contact me via email cebrail.kocakafa@gmail.com if you want to work on this project with your public ssh key and i will add you as collaborator.
+If you want to work on this project with your public ssh key and i will add you as collaborator.
