@@ -53,36 +53,38 @@ function guessChar(event) {
   }
   gameWordDiv.textContent = gameWord.join(" ");
   if (!secretWord.includes(key) && !wrongGuesses.includes(key)) {
+    health -= 1;
     wrongGuesses.push(key);
     wrongGuessesDiv.textContent =
       "bereits geraten: [ " + wrongGuesses.sort().join(" ") + " ]";
   }
-  damage(key);
-  checkWin(event);
+  updateUI();
+  checkGameover();
 }
-function checkWin(event) {
+
+function checkGameover() {
   if (gameWord.join("") === secretWord.join("")) {
-    winDiv.textContent = "Gewonnen!";
     totalWins += 1;
     gameOver = true;
-    console.log(totalWins);
     saveWins(totalWins);
+    winDiv.textContent = "Gewonnen!";
     scoreDiv.textContent = "Your total wins: " + totalWins;
   }
-}
-function damage(key) {
-  if (!secretWord.includes(key)) {
-    health -= 1;
+  if (health == 0) {
+    gameOver = true;
   }
-  if (health == 8 || health >= 1) {
+}
+
+function updateUI() {
+  if (health > 0) {
     healthSymbolDiv.style.fontSize = "25px";
     healthSymbolDiv.innerHTML = hearts.repeat(health);
     winDiv.textContent = "noch " + health + " Leben";
   } else {
-    healthSymbolDiv.innerHTML = skull.repeat(1);
+    healthSymbolDiv.innerHTML = skull;
     healthSymbolDiv.style.fontSize = "100px";
     healthSymbolDiv.style.marginTop = "65px";
-    return (winDiv.textContent = "verloren!");
+    winDiv.textContent = "verloren!";
   }
 }
 function saveWins() {
