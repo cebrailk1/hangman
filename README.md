@@ -5,9 +5,9 @@ HTML, CSS and Javascript based project to play the popular game Hangman with ran
 ## How to use
 
 Feel free to use my game at the published version [Github Pages](https://cebrailk1.github.io/hangman/)
-![Start](/home/cebrail/Documents/Projects/githangman/hangman/Screenshot from 2024-10-08 11-55-20.png)
-![Gameover](hangman/Screenshot from 2024-10-08 11-55-39.png)
-![Game](/home/cebrail/Documents/Projects/githangman/hangman/Screenshot from 2024-10-08 11-55-48.png)
+![Start](https://github.com/cebrailk1/hangman/blob/main/Screenshot%20from%202024-10-08%2011-55-20.png)
+![Gameover](https://github.com/cebrailk1/hangman/blob/main/Screenshot%20from%202024-10-08%2011-55-20.png)
+![Game](https://github.com/cebrailk1/hangman/blob/main/Screenshot%20from%202024-10-08%2011-55-20.png)
 
 ## How to run
 
